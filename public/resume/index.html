@@ -17,16 +17,18 @@
     .contact { display:flex; flex-wrap:wrap; gap:7px 18px; margin-top:14px; color:var(--muted); font-size:14px; }
     .contact a { color:inherit; text-decoration:none; }
     .photo { width:112px; height:140px; object-fit:cover; border-radius:13px; box-shadow:0 0 0 1px rgba(37,109,112,.14),0 8px 24px rgba(35,61,65,.12); }
-    .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:24px 0 0; }
-    .metric { min-height:58px; padding:10px 12px; background:var(--pale); border-radius:9px; display:flex; flex-direction:column; justify-content:center; }
+    .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:22px 0 0; }
+    .metric { min-height:50px; padding:9px 12px; background:var(--pale); border-radius:9px; display:flex; flex-direction:row; align-items:baseline; justify-content:center; gap:8px; white-space:nowrap; }
     .metric b { color:var(--accent); font-size:15px; } .metric span { color:var(--muted); font-size:12px; }
     section { margin-top:28px; }
     h2 { margin:0 0 12px; font-size:18px; line-height:1.3; display:flex; align-items:center; gap:9px; }
     h2::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--accent); flex:0 0 auto; }
     .summary { margin:0; font-size:14.5px; text-align:justify; }
-    .caps { display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; }
-    .cap { display:grid; grid-template-columns:92px 1fr; gap:8px; font-size:13.5px; padding:5px 0; border-bottom:1px solid #edf1f2; }
-    .cap strong { color:var(--accent); }
+    .caps { display:grid; grid-template-columns:1fr 1fr; column-gap:14px; row-gap:0; }
+    .cap { display:grid; grid-template-columns:92px minmax(0,1fr); gap:4px; font-size:13.2px; padding:7px 0; border-bottom:1px solid #edf1f2; align-items:baseline; }
+    .cap:last-child:nth-child(odd) { grid-column:1 / -1; }
+    .cap strong { color:var(--accent); white-space:nowrap; }
+    .cap span { white-space:nowrap; word-break:keep-all; }
     .flow { display:grid; grid-template-columns:repeat(5,1fr); align-items:center; margin-top:17px; }
     .step { position:relative; text-align:center; color:var(--accent); font-size:12.5px; font-weight:700; }
     .step::before { content:""; display:block; width:10px; height:10px; margin:0 auto 7px; border:3px solid var(--accent); background:white; border-radius:50%; position:relative; z-index:2; }
@@ -44,12 +46,16 @@
     .tag { border:1px solid #b8d2d1; color:#315f61; background:#f5faf9; border-radius:999px; padding:5px 10px; font-size:12.5px; }
     .skills { columns:2; column-gap:28px; } .skills li { break-inside:avoid; }
     .print-note { text-align:center; color:#829096; font-size:11px; margin-top:28px; }
+    @media (max-width:900px) {
+      .caps { grid-template-columns:1fr; } .cap:last-child:nth-child(odd) { grid-column:auto; }
+    }
     @media (max-width:720px) {
       .resume { width:100%; margin:0; padding:28px 22px 36px; box-shadow:none; }
       .hero { grid-template-columns:1fr 86px; gap:16px; } .photo { width:82px; height:103px; }
       h1 { font-size:30px; } .headline { font-size:17px; }
-      .metrics { grid-template-columns:1fr 1fr; } .caps,.bottom-grid { grid-template-columns:1fr; }
-      .cap { grid-template-columns:82px 1fr; } .flow { min-width:0; grid-template-columns:repeat(5,1fr); } .step { font-size:11px; }
+      .metrics { grid-template-columns:1fr 1fr; } .metric { flex-direction:column; align-items:flex-start; gap:2px; white-space:normal; } .caps,.bottom-grid { grid-template-columns:1fr; }
+      .cap { grid-template-columns:104px minmax(0,1fr); font-size:12.5px; } .cap span { white-space:normal; word-break:keep-all; }
+      .flow { min-width:0; grid-template-columns:repeat(5,1fr); } .step { font-size:11px; }
       .exp-head { display:block; } time { display:block; margin-top:3px; } .skills { columns:1; }
     }
     @page { size:Letter; margin:.46in .52in; }
@@ -59,7 +65,7 @@
       h1 { font-size:28px; } .headline { font-size:15px; } .contact { margin-top:8px; font-size:11px; }
       .metrics { margin-top:12px; gap:7px; } .metric { min-height:41px; padding:6px 9px; } .metric b { font-size:12px; } .metric span { font-size:9px; }
       section { margin-top:13px; } h2 { margin-bottom:6px; font-size:14px; }
-      .summary { font-size:10px; } .cap { font-size:9px; padding:2px 0; grid-template-columns:70px 1fr; }
+      .summary { font-size:10px; } .caps { grid-template-columns:1fr 1fr; column-gap:14px; } .cap { font-size:8.4px; padding:2px 0; grid-template-columns:65px 1fr; gap:4px; } .cap:last-child:nth-child(odd) { grid-column:1 / -1; } .cap span { white-space:nowrap; }
       .flow { margin-top:8px; } .step { font-size:8.5px; } .step::before { width:7px; height:7px; border-width:2px; margin-bottom:4px; }
       .experience { padding:7px 0 5px; } h3 { font-size:11px; } .role,time { font-size:9px; }
       ul { margin-top:4px; } li { font-size:9px; margin:2px 0; }
@@ -86,17 +92,17 @@
       <div class="metric"><b>5年+</b><span>项目管理经验</span></div>
       <div class="metric"><b>PMP</b><span>项目管理认证</span></div>
       <div class="metric"><b>0 → 1</b><span>研发协同平台</span></div>
-      <div class="metric"><b>AI实践</b><span>人机协同与Vibe Coding</span></div>
+      <div class="metric"><b>Vibe Coding</b><span>AI协同开发</span></div>
     </div>
 
     <section>
       <h2>个人概述</h2>
-      <p class="summary">5年+项目管理、PMO及研发协同经验，具备项目全流程管理、跨部门协同、内部平台建设和组织效能运营能力。能够围绕业务目标推进需求分析、项目规划、进度跟踪、风险管理和问题闭环，拥有软件项目交付、组织绩效运营及研发协同平台建设等多场景经验。参与哔哩哔哩用户技术中心研发协同平台从0到1建设，负责核心能力规划与持续迭代；具备人机协同平台实践，能够将AI应用于需求分析、产品设计、轻量开发及项目效率提升。</p>
+      <p class="summary">5年+项目管理、PMO及研发协同经验，经历软件项目交付、区域绩效运营及内部平台建设等多场景实践。能够围绕业务目标推进需求分析、项目规划、进度与风险管理、跨团队协同及问题闭环。参与哔哩哔哩用户技术中心研发协同平台从ANT、轻流到Dojo的持续演进，覆盖传统项目管理平台迁移、产研测流程提效及AI Native人机协同；能够使用Codex、Claude Code辅助原型验证、轻量开发与项目效率提升。</p>
     </section>
 
     <section>
       <h2>核心能力</h2>
-      <div class="caps"><div class="cap"><strong>项目管理</strong><span>项目规划、进度管理、风险识别、问题闭环、项目复盘</span></div><div class="cap"><strong>PMO运营</strong><span>组织绩效、KPI跟踪、运营会议、流程建设、效能度量</span></div><div class="cap"><strong>跨部门协同</strong><span>协调产品、研发、测试、业务及管理团队推动事项落地</span></div><div class="cap"><strong>平台建设</strong><span>用户调研、需求分析、方案设计、研发协调、上线运营</span></div><div class="cap"><strong>AI工具应用</strong><span>Codex、Claude Code、Vibe Coding、人机协同平台实践</span></div></div>
+      <div class="caps"><div class="cap"><strong>项目管理</strong><span>项目规划、进度与风险管理、问题闭环、项目复盘</span></div><div class="cap"><strong>PMO运营</strong><span>组织绩效、KPI管理、经营会议、流程与效能度量</span></div><div class="cap"><strong>跨部门协同</strong><span>协调产品、研发、测试、业务及管理团队推进交付</span></div><div class="cap"><strong>平台建设</strong><span>用户调研、需求分析、产品方案、研发协调、上线运营</span></div><div class="cap"><strong>AI协同开发</strong><span>Codex、Claude Code、Vibe Coding、Agent协作</span></div></div>
       <div class="flow" aria-label="项目管理工作方法">
         <div class="step">需求分析</div><div class="step">项目规划</div><div class="step">协同推进</div><div class="step">上线交付</div><div class="step">复盘优化</div>
       </div>
@@ -107,16 +113,16 @@
       <article class="experience">
                 <div class="exp-head">
                   <div><h3>哔哩哔哩｜用户技术中心</h3><div class="role">PMO（研发协同与AI方向）</div></div>
-                  <time>2025.03—至今</time>
+                  <time>2025.03—2026.12</time>
                 </div>
-                <ul><li>负责内部研发协同平台的规划建设、项目推进与运营推广，为产品、研发、测试及项目管理团队提供协同和效能支持。</li><li>参与研发协同平台从0到1建设，作为核心负责人主导需求管理、角色化工作台等关键能力的产品设计与持续迭代。</li><li>建立需求收集、用户调研、方案评审和反馈闭环机制，持续推动多项平台需求落地，覆盖需求分析、项目排期、研发协调、上线验证及运营优化全流程。</li><li>协调产品、研发、测试及PMO等角色，跟踪项目进度、风险和遗留问题，推动跨团队事项按计划落地。</li><li>参与研发协同及效能平台的整合与治理，推动业务流程、权限体系和数据关系的梳理与统一，并参与效能度量和资源管理能力建设。</li><li>参与人机协同平台建设，基于开源技术底座开展场景化改造；运用Codex、Claude Code开展Vibe Coding，辅助完成原型验证、轻量工具开发和方案落地。</li></ul>
+                <ul><li>负责用户技术中心研发协同平台的产品规划、项目推进与运营，围绕产研测协作效率，推动平台由ANT、轻流向Dojo持续演进。</li><li>推动第一代ANT平台向轻流迁移与产品化改造，承接工时、排期和需求管理能力，完善需求全生命周期管理并接入CI/CD能力，提升产研测流程协同效率。</li><li>核心参与轻流平台从0到1建设，主导需求管理、角色化工作台等重点能力，建立需求收集、用户调研、方案评审、研发跟进、上线验证及反馈优化机制。</li><li>持续服务用户技术中心各研发团队，协调产品、研发、测试及PMO推进需求落地，并参与平台整合、权限治理、效能度量和资源管理能力建设。</li><li>参与新一代人机协同平台Dojo建设，基于Multica进行场景化改造，支持在任务中创建Agent，由人与多个Agent共同完成需求分析、开发协作和任务推进。</li><li>推动Agent自动完成状态流转、过程跟进等重复操作，减少人工维护流程的投入，以适应高频需求迭代及多人、多Agent并行协作模式；运用Codex、Claude Code开展Vibe Coding，辅助原型验证和轻量功能开发。</li></ul>
               </article>
       <article class="experience page-two">
                 <div class="exp-head">
-                  <div><h3>旷真（上海）律师事务所</h3><div class="role">质量运营</div></div>
+                  <div><h3>旷真（上海）律师事务所</h3><div class="role">质量运营（组织绩效与区域运营）</div></div>
                   <time>2023.12—2024.12</time>
                 </div>
-                <ul><li>根据公司战略规划跟踪事业部重点工作，推进组织绩效经营会议及相关事项落地，协调解决执行过程中的问题。</li><li>参与组织绩效及KPI指标的设定与度量，通过数据分析监控业务进展，识别目标达成风险并提出改进建议。</li><li>负责集团级运营会议的组织和过程管理，跟踪会议决策及遗留事项，推动责任人、完成时间和处理结果形成闭环。</li><li>统筹各分区质量运营工作，推动问题响应、跨层级信息传递及客户服务改善，协调相关团队制定并落实改进措施。</li></ul>
+                <ul><li>负责华东大区整体组织绩效管理，承接公司战略及年度经营目标，推动指标分解、进度跟踪、风险识别和改进事项落地。</li><li>通过经营会议、KPI数据分析及行动项管理持续跟踪各分区目标达成情况；在任期间，华东大区组织绩效排名提升至全国第一。</li><li>统筹华东各分区质量运营及客户服务改善，分析客户反馈与业务问题，协调相关团队落实改进方案，推动客户满意度由70%提升至100%。</li><li>负责集团级及区域经营会议的过程管理，跟踪会议决策、责任人、完成时间及处理结果，协调总部、区域和各分区推动重点事项闭环。</li></ul>
               </article>
       <article class="experience">
                 <div class="exp-head">
