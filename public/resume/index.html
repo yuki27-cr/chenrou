@@ -24,15 +24,7 @@
     h2 { margin:0 0 12px; font-size:18px; line-height:1.3; display:flex; align-items:center; gap:9px; }
     h2::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--accent); flex:0 0 auto; }
     .summary { margin:0; font-size:14.5px; text-align:justify; }
-    .caps { display:grid; grid-template-columns:1fr 1fr; column-gap:14px; row-gap:0; }
-    .cap { display:grid; grid-template-columns:92px minmax(0,1fr); gap:4px; font-size:13.2px; padding:7px 0; border-bottom:1px solid #edf1f2; align-items:baseline; }
-    .cap:last-child:nth-child(odd) { grid-column:1 / -1; }
-    .cap strong { color:var(--accent); white-space:nowrap; }
-    .cap span { white-space:nowrap; word-break:keep-all; }
-    .flow { display:grid; grid-template-columns:repeat(5,1fr); align-items:center; margin-top:17px; }
-    .step { position:relative; text-align:center; color:var(--accent); font-size:12.5px; font-weight:700; }
-    .step::before { content:""; display:block; width:10px; height:10px; margin:0 auto 7px; border:3px solid var(--accent); background:white; border-radius:50%; position:relative; z-index:2; }
-    .step:not(:last-child)::after { content:""; position:absolute; height:2px; background:#9bc3c1; top:5px; left:55%; right:-45%; z-index:1; }
+    .keyword-line { margin:0; color:var(--accent); font-size:14px; font-weight:700; letter-spacing:.01em; white-space:nowrap; }
     .experience { padding:15px 0 12px; border-bottom:1px solid var(--line); }
     .experience:last-child { border-bottom:0; }
     .exp-head { display:flex; justify-content:space-between; gap:20px; align-items:flex-start; }
@@ -47,15 +39,14 @@
     .skills { columns:2; column-gap:28px; } .skills li { break-inside:avoid; }
     .print-note { text-align:center; color:#829096; font-size:11px; margin-top:28px; }
     @media (max-width:900px) {
-      .caps { grid-template-columns:1fr; } .cap:last-child:nth-child(odd) { grid-column:auto; }
+      .keyword-line { white-space:normal; }
     }
     @media (max-width:720px) {
       .resume { width:100%; margin:0; padding:28px 22px 36px; box-shadow:none; }
       .hero { grid-template-columns:1fr 86px; gap:16px; } .photo { width:82px; height:103px; }
       h1 { font-size:30px; } .headline { font-size:17px; }
-      .metrics { grid-template-columns:1fr 1fr; } .metric { flex-direction:column; align-items:flex-start; gap:2px; white-space:normal; } .caps,.bottom-grid { grid-template-columns:1fr; }
-      .cap { grid-template-columns:104px minmax(0,1fr); font-size:12.5px; } .cap span { white-space:normal; word-break:keep-all; }
-      .flow { min-width:0; grid-template-columns:repeat(5,1fr); } .step { font-size:11px; }
+      .metrics { grid-template-columns:1fr 1fr; } .metric { flex-direction:column; align-items:flex-start; gap:2px; white-space:normal; } .bottom-grid { grid-template-columns:1fr; }
+      .keyword-line { font-size:12.5px; white-space:normal; line-height:1.6; }
       .exp-head { display:block; } time { display:block; margin-top:3px; } .skills { columns:1; }
     }
     @page { size:Letter; margin:.46in .52in; }
@@ -65,8 +56,7 @@
       h1 { font-size:28px; } .headline { font-size:15px; } .contact { margin-top:8px; font-size:11px; }
       .metrics { margin-top:12px; gap:7px; } .metric { min-height:41px; padding:6px 9px; } .metric b { font-size:12px; } .metric span { font-size:9px; }
       section { margin-top:13px; } h2 { margin-bottom:6px; font-size:14px; }
-      .summary { font-size:10px; } .caps { grid-template-columns:1fr 1fr; column-gap:14px; } .cap { font-size:8.4px; padding:2px 0; grid-template-columns:65px 1fr; gap:4px; } .cap:last-child:nth-child(odd) { grid-column:1 / -1; } .cap span { white-space:nowrap; }
-      .flow { margin-top:8px; } .step { font-size:8.5px; } .step::before { width:7px; height:7px; border-width:2px; margin-bottom:4px; }
+      .summary { font-size:10px; } .keyword-line { font-size:8.4px; white-space:nowrap; }
       .experience { padding:7px 0 5px; } h3 { font-size:11px; } .role,time { font-size:9px; }
       ul { margin-top:4px; } li { font-size:9px; margin:2px 0; }
       .bottom-grid { gap:20px; } .edu-row strong { font-size:10px; } .subtle,.tag { font-size:8.5px; } .tag { padding:3px 6px; }
@@ -97,15 +87,12 @@
 
     <section>
       <h2>个人概述</h2>
-      <p class="summary">5年+项目管理、PMO及研发协同经验，经历软件项目交付、区域绩效运营及内部平台建设等多场景实践。能够围绕业务目标推进需求分析、项目规划、进度与风险管理、跨团队协同及问题闭环。参与哔哩哔哩用户技术中心研发协同平台从ANT、轻流到Dojo的持续演进，覆盖传统项目管理平台迁移、产研测流程提效及AI Native人机协同；能够使用Codex、Claude Code辅助原型验证、轻量开发与项目效率提升。</p>
+      <p class="summary">5年项目管理及PMO经验，近两年聚焦研发协同、效能平台与AI Agent项目。具备内部平台从0到1建设、存量系统迁移、跨团队项目推进及运营优化经验，能够完成需求分析、项目规划、风险管理、研发协同、上线验证与持续运营。曾推动工时及需求管理平台建设，并参与新一代人机协同平台落地；持有PMP认证，能够使用Codex、Claude Code完成原型验证和轻量功能开发。相关平台覆盖B站主站全部研发团队、900+名用户，推动3+项流程自动化（包括流程流转、信息通知、评审预约、人机协同等）。</p>
     </section>
 
     <section>
       <h2>核心能力</h2>
-      <div class="caps"><div class="cap"><strong>项目管理</strong><span>项目规划、进度与风险管理、问题闭环、项目复盘</span></div><div class="cap"><strong>PMO运营</strong><span>组织绩效、KPI管理、经营会议、流程与效能度量</span></div><div class="cap"><strong>跨部门协同</strong><span>协调产品、研发、测试、业务及管理团队推进交付</span></div><div class="cap"><strong>平台建设</strong><span>用户调研、需求分析、产品方案、研发协调、上线运营</span></div><div class="cap"><strong>AI协同开发</strong><span>Codex、Claude Code、Vibe Coding、Agent协作</span></div></div>
-      <div class="flow" aria-label="项目管理工作方法">
-        <div class="step">需求分析</div><div class="step">项目规划</div><div class="step">协同推进</div><div class="step">上线交付</div><div class="step">复盘优化</div>
-      </div>
+      <p class="keyword-line">项目计划｜进度与风险管理｜跨团队协同｜需求管理｜研发效能｜内部平台建设｜AI Agent</p>
     </section>
 
     <section>
@@ -115,7 +102,7 @@
                   <div><h3>哔哩哔哩｜用户技术中心</h3><div class="role">PMO（研发协同与AI方向）</div></div>
                   <time>2025.03—2026.12</time>
                 </div>
-                <ul><li>负责用户技术中心研发协同平台的产品规划、项目推进与运营，围绕产研测协作效率，推动平台由ANT、轻流向Dojo持续演进。</li><li>推动第一代ANT平台向轻流迁移与产品化改造，承接工时、排期和需求管理能力，完善需求全生命周期管理并接入CI/CD能力，提升产研测流程协同效率。</li><li>核心参与轻流平台从0到1建设，主导需求管理、角色化工作台等重点能力，建立需求收集、用户调研、方案评审、研发跟进、上线验证及反馈优化机制。</li><li>持续服务用户技术中心各研发团队，协调产品、研发、测试及PMO推进需求落地，并参与平台整合、权限治理、效能度量和资源管理能力建设。</li><li>参与新一代人机协同平台Dojo建设，基于Multica进行场景化改造，支持在任务中创建Agent，由人与多个Agent共同完成需求分析、开发协作和任务推进。</li><li>推动Agent自动完成状态流转、过程跟进等重复操作，减少人工维护流程的投入，以适应高频需求迭代及多人、多Agent并行协作模式；运用Codex、Claude Code开展Vibe Coding，辅助原型验证和轻量功能开发。</li></ul>
+                <ul><li>负责用户技术中心研发协同平台的项目规划、需求管理与运营，建设研发效能看板，面向21个部门定期提供效能分析；基于观远BI与Narya实现报告自动生成。将单次报告整理时间由4小时缩短至20分钟。</li><li>推动ANT向轻流的平台迁移及产品化改造，完成工时管理、质效管理、需求全生命周期和CI/CD等能力整合，推动100%的存量数据/团队完成迁移，平台UV较改版前提升50%，用户满意度超70%，提升管理透明度。</li><li>核心参与轻流平台从0到1建设，主导需求管理、角色化工作台等重点能力，建立需求收集、用户调研、方案评审、研发跟进、上线验证及反馈优化机制。累计推动200余项需求交付。</li><li>参与新一代人机协同平台Dojo建设，基于Multica完成研发场景适配，支持人与多个Agent协同完成需求分析、开发协作、任务推进及状态流转，已在4个团队落地，覆盖113名用户；使用Codex、Claude Code完成原型验证及轻量功能开发。</li></ul>
               </article>
       <article class="experience page-two">
                 <div class="exp-head">
